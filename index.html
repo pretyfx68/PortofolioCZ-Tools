@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gpt Worm PrtdFX69</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:radial-gradient(circle at top,#3a0000,#000 45%);color:#fff;}
+.section{padding:24px 16px;display:flex;justify-content:center;}
+.card{width:360px;background:rgba(0,0,0,0.7);border-radius:22px;padding:26px 22px 30px;border:1px solid rgba(255,0,0,0.25);box-shadow:0 0 15px rgba(255,0,0,0.2);transition: box-shadow 0.3s,border 0.3s,color 0.3s;}
+.card.active{border:2px solid rgba(255,0,0,0.8);box-shadow:0 0 25px rgba(255,0,0,0.7),0 0 50px rgba(255,0,0,0.4) inset;}
+.card.active h2{color:#ff4d4d !important;}
+.hero h1{
+  text-align:center;
+  font-size:32px;
+  margin-bottom:10px;
+  font-weight:800;
+  text-shadow:
+    0 0 10px rgba(255,0,0,0.8),
+    0 0 25px rgba(255,0,0,0.6);
+  background:linear-gradient(90deg,#ffb3b3,#ff2b2b);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.hero p{text-align:center;opacity:.8;}
+.product-image{position:relative;margin:22px 0;border-radius:16px;overflow:hidden;cursor:pointer;}
+.product-image img{width:100%;height:190px;object-fit:cover;}
+.card h2{text-align:center;color:#ffffff;transition: color 0.3s;}
+.btn{display:block;width:100%;padding:14px;border-radius:16px;font-weight:700;border:none;cursor:pointer;color:#fff;background:linear-gradient(135deg,#ff1a1a,#7a0000);box-shadow:0 0 28px rgba(255,0,0,.6);}
+#lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);align-items:center;justify-content:center;z-index:9999;touch-action:none;overflow:hidden;}
+#lightbox img{max-width:90%;max-height:85%;border-radius:14px;transition: transform 0.2s;cursor:grab;}
+#lightbox img:active{cursor:grabbing;}
+/* ===== ORDER MODAL ===== */
+.order-modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  backdrop-filter:blur(6px);
+  z-index:9999;
+  align-items:center;
+  justify-content:center;
+}
+
+.order-card{
+  width:340px;
+  background:linear-gradient(180deg,#0c0f18,#050608);
+  border-radius:22px;
+  padding:26px 22px;
+  border:1px solid rgba(255,0,0,.35);
+  box-shadow:0 0 35px rgba(255,0,0,.45);
+}
+
+.order-icon{
+  width:70px;
+  height:70px;
+  margin:0 auto 14px;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:32px;
+  background:linear-gradient(145deg,#3a0000,#140000);
+}
+
+.order-card h2{
+  text-align:center;
+  color:#ff9c9c;
+}
+
+.order-sub{
+  text-align:center;
+  opacity:.8;
+  margin-bottom:20px;
+}
+
+.order-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px;
+  border-radius:16px;
+  margin-bottom:14px;
+  background:linear-gradient(135deg,#140000,#080000);
+  border:1px solid rgba(255,0,0,.25);
+  color:#fff;
+  text-decoration:none;
+}
+
+.arrow{color:#ff6b6b}
+
+.close-btn{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:16px;
+  background:#121826;
+  color:#fff;
+  font-weight:700;
+  cursor:pointer;
+  margin-top: 12px;
+}
+.price-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(6px);z-index:10000;align-items:center;justify-content:center;}
+.price-card{width:300px;background:linear-gradient(180deg,#0c0f18,#050608);border-radius:20px;padding:22px;border:1px solid rgba(255,0,0,.35);box-shadow:0 0 25px rgba(255,0,0,.45);}
+.price-card h2{text-align:center;color:#ff0000;}
+#priceContent{
+  max-height:400px;
+  overflow-y:auto;
+  background:rgba(0,0,0,0.55);
+  border-radius:14px;
+  padding:14px;
+  color:#fff;
+  font-size:14px;
+}
+.openPrice{
+  display:block;
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border-radius:12px;
+  border:none;
+  background:#222;      /* gelap */
+  color:#ff0000;           /* teks cyan */
+  font-weight:700;
+  cursor:pointer;
+}
+.price-list{
+  padding-left:18px;
+  margin:8px 0 10px;
+}
+
+.price-list li{
+  margin-bottom:6px;
+  list-style: none;
+  position: relative;
+}
+
+.price-list li::before{
+  content:"•";
+  color:#ff0000;
+  position:absolute;
+  left:-12px;
+}
+
+.price-tag{
+  margin-top:6px;
+  color:#ff0000;
+  font-weight:700;
+}
+
+.divider{
+  border:none;
+  height:1px;
+  background:linear-gradient(90deg,transparent,#ff0000,transparent);
+  margin:14px 0;
+}
+.card.hero{
+  position: relative;
+  background:
+    linear-gradient(
+      rgba(120,0,0,0.75),
+      rgba(0,0,0,0.9)
+    ),
+    url("https://raw.githubusercontent.com/PretyFX69/music-files2/refs/heads/main/IMG-20251228-WA0098.jpg");
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+.hero-icon{
+  display:flex;
+  justify-content:center;
+  margin-bottom:12px;
+}
+
+.hero-icon i{
+  font-size:46px;
+
+  /* warna dasar merah gelap */
+  color:#8b0000;
+
+  /* efek mengkilap */
+  background:linear-gradient(
+    180deg,
+    #ff5a5a 0%,
+    #8b0000 45%,
+    #4d0000 100%
+  );
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+
+  /* glow halus */
+  text-shadow:
+    0 0 6px rgba(255,0,0,0.45),
+    0 0 14px rgba(255,0,0,0.25);
+
+  filter:drop-shadow(0 4px 8px rgba(0,0,0,0.8));
+}
+@keyframes pulseRed{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.08)}
+  100%{transform:scale(1)}
+}
+
+.hero-icon i{
+  animation:pulseRed 2.2s infinite;
+}
+</style>
+</head>
+<body>
+
+<section class="section">
+  <div class="card hero">
+<div class="hero-icon">
+  <i class="fa-solid fa-user-secret"></i>
+</div>
+    <h1>Tools Hacking</h1>
+    <p>Premium Tools Termux Interface dengan 100+ fitur & 12+ menu fitur tools,Tools Hacking siap membantu anda</p>
+    <button class="btn openOrder">🔥Dapatkan Produk Dan Lihat Harga</button>
+  </div>
+</section>
+
+<section class="section">
+  <div class="card">
+    <h2>Tampilan Login Worm-GPT</h2>
+    <div class="product-image"><img src="https://raw.githubusercontent.com/PretyFX69/music-files2/refs/heads/main/IMG-20251229-WA0004.jpg"></div>
+        <p style="text-align:center;opacity:.8">
+      Tampilan Login dengan disain yang premium cocok untuk kamu yang suka buat konten atau untuk melengkapi pekerjaan kuliah dan lain lain.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="card">
+    <h2>Menu Utama</h2>
+    <div class="product-image"><img src="https://raw.githubusercontent.com/PretyFX69/music-files2/refs/heads/main/IMG-20251229-WA0005.jpg"></div>
+        <p style="text-align:center;opacity:.8">
+      Menu utama Tools Hacking, menu ini mencakup semua fitur & menu menu fitur yang tersedia.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="card">
+    <h2>Menu Tacking</h2>
+    <div class="product-image"><img src="https://raw.githubusercontent.com/PretyFX69/music-files2/refs/heads/main/IMG-20251229-WA0006.jpg"></div>
+            <p style="text-align:center;opacity:.8">
+      Menu Tracking yang berfungsi untuk mencari data open source & lainya.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="card">
+    <h2>Menu Phising</h2>
+    <div class="product-image"><img src="https://raw.githubusercontent.com/PretyFX69/music-files2/refs/heads/main/IMG-20251229-WA0007.jpg"></div>
+                <p style="text-align:center;opacity:.8">
+      Menu phising yang berguna untuk mengambil data contohnya foto kamera depan, Gmail, password Gmail, IP, dan lainya.
+    </p>
+  </div>
+</section>
+<section class="section">
+  <div class="card">
+    <h2>Menu Osint</h2>
+    <div class="product-image"><img src="https://raw.githubusercontent.com/PretyFX69/music-files2/refs/heads/main/IMG-20251229-WA0008.jpg"></div>
+        <p style="text-align:center;opacity:.8">
+      Menu Osin yang berguna untuk membantu kebutuhan aktivitas anda di digital.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="card">
+    <h2>Menu Suntik</h2>
+    <div class="product-image"><img src="https://raw.githubusercontent.com/PretyFX69/music-files2/refs/heads/main/IMG-20251229-WA0009.jpg"></div>
+        <p style="text-align:center;opacity:.8">
+      Menu Suntik Sosmed yang mencangkup semua fitur untuk menambah like, followers, favorit, share, like command dan lain sebagainya untuk sosmed YouTube, Tiktok, Instagram Dan lainya.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="card">
+    <h2>Dark Menu</h2>
+    <div class="product-image"><img src="https://raw.githubusercontent.com/PretyFX69/music-files2/refs/heads/main/IMG-20251229-WA0010.jpg"></div>
+            <p style="text-align:center;opacity:.8">
+      Menu Dark, Menu ini mencakup semua fitur yang dapat membantu anda untuk kebutuhan inteligen dan lain sebagainya.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="card">
+    <h2>Attack Telegram</h2>
+    <div class="product-image"><img src="https://raw.githubusercontent.com/PretyFX69/music-files2/refs/heads/main/IMG-20251229-WA0011.jpg"></div>
+                <p style="text-align:center;opacity:.8">
+      Menu Attack Telegram, menu ini mencakup fitur - fitur yang berguna untuk menyerang bot telegram seseorang dengan brutal dan tanpa batas fitur ini juga bisa untuk memberi pelajaran kepada seseorang yang menyebarkan link phising ke kamu.
+    </p>
+  </div>
+</section>
+<!-- MODAL ORDER -->
+<div class="order-modal" id="orderModal">
+  <div class="order-card">
+      <div class="hero-icon">
+  <i class="fa-solid fa-user-secret"></i>
+</div>
+    <h2>Order Tools 𝕻𝖗𝖊𝖙𝖞𝕱𝖃</h2>
+    <a href="https://t.me/alwysprtyfx" target="_blank" class="order-item">
+      Telegram 𝕻𝖗𝖊𝖙𝖞𝕱𝖃 <span class="arrow">→</span>
+    </a>
+    <a href="https://wa.me/6285700711112" target="_blank" class="order-item">
+      WhatsApp 𝕻𝖗𝖊𝖙𝖞𝕱𝖃 <span class="arrow">→</span>
+    </a>
+
+    <!-- Tombol untuk memunculkan modal harga -->
+<button class="openPrice">Lihat Harga</button>
+
+    <button class="close-btn" id="closeOrder">Close</button>
+  </div>
+</div>
+
+<!-- MODAL HARGA -->
+<div class="price-modal" id="priceModal">
+  <div class="price-card">
+    <h2>List Harga</h2>
+
+    <div id="priceContent">
+
+      <h3 style="color:#ff0000;margin:0 0 6px">Fitur Tools</h3>
+      <ul class="price-list">
+        <li>✔ SUNTIK TΙΚΤΟΚ</li>
+        <li>✔ SUNTIK IG</li>
+        <li>✔ CEK PROVIDER NOMOR</li>
+        <li>✔ ASCII ART GENERATOR</li>
+        <li>✔ PERKIRAAN CUACA</li>
+        <li>✔ BROWSING (w3m)</li>
+        <li>✔ STATUS WEBSITE</li>
+        <li>✔ ALL KALKULATOR</li>
+        <li>✔ DEFACE WEBSITE</li>
+        <li>✔ TRACKING IP</li>
+        <li>✔ IP PRIBADI</li>
+         <li>✔ KEBOCORAN GMAIL</li>
+         <li>✔ ENCRYPS CODE</li>
+         <li>✔ LACAK NAMA</li>
+         <li>✔ LACAK LOKASI NOMOR (IP)</li>
+         <li>✔ LAPORKAN BUG</li>
+         <li>✔ MENU TRACKING</li>
+         <li>✔ MENU OSIN</li>
+         <li>✔ MENU GHOS TRACK</li>
+         <li>✔ CHECKER NIK</li>
+         <li>✔ MENU PHISING</li>
+         <li>✔ MENU SPAM</li>
+         <li>✔ DARK MEMU</li>
+         
+      </ul>
+
+      <div class="price-tag">Akses Permanent : Rp 55.000 <br>Setiap Update : Rp 15.000
+      </div>
+      <hr class="divider">
+</div>
+
+    <button class="close-btn" id="closePrice">Close</button>
+  </div>
+</div>
+<div id="lightbox"><img id="lightboxImg"></div>
+<p style="width:350px; text-align:center;"> &copy; 2025 Development Cyberzain. All right reserved</p> 
+<script>
+let currentScale = 1, translateX = 0, translateY = 0;
+let startX = 0, startY = 0, initialDistance = 0;
+let isDragging = false;
+let cardActive = null;
+
+const productImages = document.querySelectorAll('.product-image');
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+
+function getDistance(touches) {
+  const [t1, t2] = touches;
+  return Math.hypot(t2.pageX - t1.pageX, t2.pageY - t1.pageY);
+}
+
+function updateTransform() {
+  lightboxImg.style.transform = `translate(${translateX}px,${translateY}px) scale(${currentScale})`;
+}
+
+function smoothDrag(x, y){
+  translateX = x;
+  translateY = y;
+  requestAnimationFrame(updateTransform);
+}
+
+function startDrag(e){
+  isDragging = true;
+  if(e.type==='mousedown'){
+    startX = e.clientX - translateX;
+    startY = e.clientY - translateY;
+    document.onmousemove = drag;
+    document.onmouseup = endDrag;
+  } else if(e.type==='touchstart'){
+    startX = e.touches[0].clientX - translateX;
+    startY = e.touches[0].clientY - translateY;
+    document.ontouchmove = drag;
+    document.ontouchend = endDrag;
+  }
+}
+
+function drag(e){
+  if(!isDragging) return;
+  let x = (e.clientX || e.touches[0].clientX) - startX;
+  let y = (e.clientY || e.touches[0].clientY) - startY;
+  smoothDrag(x, y);
+}
+
+function endDrag(){
+  isDragging = false;
+  document.onmousemove = null;
+  document.onmouseup = null;
+  document.ontouchmove = null;
+  document.ontouchend = null;
+}
+
+productImages.forEach(imgDiv=>{
+  imgDiv.addEventListener('click', e=>{
+    const card = imgDiv.closest('.card');
+    card.classList.add('active');
+    cardActive = card;
+
+    lightboxImg.src = imgDiv.querySelector('img').src;
+    currentScale = 1; translateX = 0; translateY = 0;
+    updateTransform();
+    lightbox.style.display = 'flex';
+
+    // scroll zoom desktop
+    lightboxImg.onwheel = ev=>{
+      ev.preventDefault();
+      currentScale += ev.deltaY<0?0.1:-0.1;
+      currentScale=Math.min(Math.max(1,currentScale),3);
+      updateTransform();
+    };
+
+    // pinch zoom mobile & drag
+    lightboxImg.ontouchstart = ev=>{
+      if(ev.touches.length===2){
+        initialDistance = getDistance(ev.touches);
+      } else if(ev.touches.length===1){
+        startDrag(ev);
+      }
+    };
+    lightboxImg.ontouchmove = ev=>{
+      if(ev.touches.length===2){
+        const newDistance = getDistance(ev.touches);
+        let scaleChange = (newDistance-initialDistance)/200;
+        currentScale = Math.min(Math.max(1,currentScale+scaleChange),3);
+        updateTransform();
+        initialDistance = newDistance;
+      } else if(ev.touches.length===1){
+        drag(ev);
+      }
+    };
+    lightboxImg.ontouchend = ev=>{
+      if(ev.touches.length<2) endDrag();
+    };
+
+    lightboxImg.onmousedown = startDrag;
+    lightboxImg.ontouchstart = startDrag;
+
+    lightbox.onclick = ()=>{
+      lightbox.style.display='none';
+      setTimeout(()=>{ if(cardActive) cardActive.classList.remove('active'); cardActive=null; },1000);
+      translateX=0; translateY=0; currentScale=1;
+      updateTransform();
+    };
+  });
+});
+const modal = document.getElementById("orderModal");
+document.querySelectorAll(".openOrder").forEach(btn=>{
+  btn.onclick = (e)=>{
+    e.stopPropagation(); // cegah bubble
+    modal.style.display = "flex";
+  };
+});
+document.getElementById("closeOrder").onclick = ()=> modal.style.display = "none";
+modal.onclick = e => { if(e.target===modal) modal.style.display = "none"; };
+const priceModal = document.getElementById("priceModal");
+const btnOpenPrice = document.querySelector(".openPrice");
+const btnClosePrice = document.getElementById("closePrice");
+btnOpenPrice.onclick = ()=> priceModal.style.display="flex";
+btnClosePrice.onclick = ()=> priceModal.style.display="none";
+priceModal.onclick = e=>{ if(e.target===priceModal) priceModal.style.display="none"; };
+</script>
+
+</body>
+</html>
